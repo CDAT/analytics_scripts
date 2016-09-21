@@ -18,7 +18,7 @@ for a in Action.objects.all():
         continue
 
 events = {}
-one_day = datetime.timedelta(0, 0, 1)
+one_day = datetime.timedelta(1)
 
 for action in actions:
     timeseries = events.get(modules[action.name], {})
