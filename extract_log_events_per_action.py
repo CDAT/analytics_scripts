@@ -29,7 +29,7 @@ for action in actions:
         num_days = 0
         d = end
         dates = [end]
-        while d != start:
+        while d > start:
             d = d - one_day
             dates.append(d)
 
