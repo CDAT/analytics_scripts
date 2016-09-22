@@ -21,7 +21,9 @@ events = {}
 one_day = datetime.timedelta(1)
 
 for action in actions:
+    print "Handling", action.name
     timeseries = events.get(modules[action.name], {})
+    print "Retrieving log events..."
     for logevent in action.logevent_set.all():
         start = logevent.session.startDate
         end = logevent.session.lastDate
@@ -32,7 +34,11 @@ for action in actions:
         while d > start:
             d = d - one_day
             dates.append(d)
-
+        if logevent.frequency < len(dates):
+            # Division is going to round badly.
+            d = "%d-%d-%d" % (dates[0].year, dates[0].month, dates[0].day)
+            timeseries[d] = timeseries.get(d, 0) + logevent.frequency
+            continue
         for date in dates:
             date_of_event = "%d-%d-%d" % (date.year, date.month, date.day)
             count = timeseries.get(date_of_event, 0)
