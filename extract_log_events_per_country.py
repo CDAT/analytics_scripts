@@ -38,9 +38,9 @@ for info in NetInfo.objects.all():
                 continue
             for date in dates:
                 date_of_event = "%d-%d-%d" % (date.year, date.month, date.day)
-                count = timeseries.get(date_of_event, 0)
-                count += logevent.frequency / len(dates)
-                timeseries[date_of_event] = count
+                c = timeseries.get(date_of_event, 0)
+                c += logevent.frequency / len(dates)
+                timeseries[date_of_event] = c
     count[pos] = timeseries
 
 with open("activity_by_country_timeseries.json", "w") as f:
