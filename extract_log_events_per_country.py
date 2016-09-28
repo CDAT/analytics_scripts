@@ -9,7 +9,7 @@ count = {}
 
 for info in NetInfo.objects.all():
     pos = info.country
-    if info.country == "Unknown":
+    if info.country == "--":
         # We need to check if there's any mapping ability to
         # determine if this info should belong to another one
         # This is true if the machine/user are the same on a different net info
