@@ -1,5 +1,6 @@
 from stats.models import Source
 import re
+from django.utils import timezone
 import datetime
 import json
 
@@ -27,7 +28,7 @@ for s in sources:
 
 activity = {}
 
-today = datetime.datetime.now()
+today = timezone.now()
 # We're only looking in the last 30 days
 period = datetime.timedelta(30)
 
