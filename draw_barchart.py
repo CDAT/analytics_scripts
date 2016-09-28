@@ -16,6 +16,7 @@ def pct_barchart(values, labels=None, title=None):
     fill = vcs.createfillarea()
     fill.x = [[.1 + i * per_bar_width] * 2 + [.1 + i * per_bar_width + per_bar_fill_width] * 2 for i in range(count)]
     fill.y = [[.1, .1 + values[i] / float(total_y), .1 + values[i] / float(total_y), .1] for i in range(count)]
+    fill.color = vcs.getcolors(range(len(values)))
     x.plot(fill)
 
     if labels is None:
