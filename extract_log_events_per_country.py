@@ -8,8 +8,9 @@ one_day = datetime.timedelta(1)
 count = {}
 
 for info in NetInfo.objects.all():
-    pos = info.country
-    if info.country == "--":
+    pos = str(info.country)
+    print pos
+    if pos == "--":
         # We need to check if there's any mapping ability to
         # determine if this info should belong to another one
         # This is true if the machine/user are the same on a different net info
@@ -22,7 +23,13 @@ for info in NetInfo.objects.all():
                     continue
                 if o_session.netInfo.ip == session.netInfo.ip:
                     continue
+                if info.country != "--":
+                    continue
+                print "matched session", pos, info.country
                 pos = info.country
+                break
+        else:
+            continue
     timeseries = count.get(pos, {})
     for session in info.session_set.all():
         for logevent in session.events.all():
