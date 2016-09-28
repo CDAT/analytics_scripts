@@ -34,7 +34,7 @@ period = datetime.timedelta(30)
 for source in sources:
     real_version = versions[source.version]
     count = activity.get(real_version, 0)
-    for le in source.logevent_set:
+    for le in source.logevent_set.all():
         session = le.session
         if session.lastDate - today > period:
             continue
