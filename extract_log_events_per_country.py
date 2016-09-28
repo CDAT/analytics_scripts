@@ -23,7 +23,7 @@ for info in NetInfo.objects.all():
                     continue
                 if o_session.netInfo.ip == session.netInfo.ip:
                     continue
-                if info.country != "--":
+                if info.country == "--":
                     continue
                 print "matched session", pos, info.country
                 pos = info.country
