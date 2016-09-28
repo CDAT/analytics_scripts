@@ -1,5 +1,9 @@
 from stats.models import NetInfo
 import json
+import datetime
+from django.utils import timezone
+
+one_day = datetime.timedelta(1)
 
 count = {}
 
